@@ -14,9 +14,7 @@ protocol CoinManagerDelegate {
 }
 
 struct CoinManager {
-    
-    //Create an optional delegate that will have to implement the delegate methods.
-    //Which we can notify when we have updated the price.
+
     var delegate: CoinManagerDelegate?
     
     let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"

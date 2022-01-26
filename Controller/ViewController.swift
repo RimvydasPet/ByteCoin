@@ -8,34 +8,27 @@
 
 import UIKit
 
-//Adopt the Coin Manager Protocol
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, CoinManagerDelegate {
     
     @IBOutlet weak var bitcoinLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     
-    //Need to change this to a var to be able to modify its properties.
     var coinManager = CoinManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Easily Missed: Must set the coinManager's delegate as this current class so that we can recieve
         //the notifications when the delegate methods are called.
         coinManager.delegate = self
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
         
     }
-    
-    //Provide the implementation for the delegate methods.
-    
+//MARK: - CoinManagerDelegate
     //When the coinManager gets the price it will call this method and pass over the price and currency.
     func didUpdatePrice(price: String, currency: String) {
         
-        //Remember that we need to get hold of the main thread to update the UI, otherwise our app will crash if we
-        //try to do this from a background thread (URLSession works in the background).
         DispatchQueue.main.async {
             self.bitcoinLabel.text = price
             self.currencyLabel.text = currency
@@ -45,7 +38,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func didFailWithError(error: Error) {
         print(error)
     }
-
+    
+    
+//MARK: - UIPickerView DataSource & Delegate
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -64,3 +60,4 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
 }
+

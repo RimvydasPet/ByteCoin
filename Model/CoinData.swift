@@ -10,8 +10,4 @@ import Foundation
 struct CoinData: Decodable {
         let rate: Double
     }
-    
-//    struct SourceBase: Codable {
-//        let volume: Double
-//    }
 
