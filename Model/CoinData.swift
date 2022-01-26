@@ -11,7 +11,7 @@ struct CoinData: Decodable {
         let rate: Double
     }
     
-    struct SourceBase: Codable {
-        let volume: Double
-    }
+//    struct SourceBase: Codable {
+//        let volume: Double
+//    }
 
